@@ -33,8 +33,8 @@ void main() {
 
 	//#######################################################################################################################
 	//load the model here
-	Shader ourShader("Shaders/backpack_model.vs", "Shaders/backpack_model.fs");
-	Model ourModel("resources/monkey/monkey.obj");
+	Shader ourShader("Shaders/base.vs", "Shaders/base.fs");
+	Model ourModel;
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);

@@ -7,7 +7,7 @@
 class Shader {
 public:
 	unsigned int ID;
-
+	Shader();
 	//compile and link shader program
 	Shader(const char* vertexPath, const char* fragmentPath);
 
