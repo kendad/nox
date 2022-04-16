@@ -1,6 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <fstream>
 
 #include "globals.h"
 
@@ -13,6 +14,8 @@ glm::mat4 PROJECTION_MATRIX;
 glm::mat4 VIEW_MATRIX;
 
 std::string PROJECT_NAME="SCENE/project0/";
+
+std::vector<std::string> PROJECT_LIST;
 
 void INIT() {
 	glfwInit();
@@ -43,6 +46,9 @@ void INIT() {
 		std::cout << "failed to init GLAD" << std::endl;
 		return;
 	}
+
+	//get project files
+	get_project_list();
 }
 
 //#######################################################################################################################
@@ -75,3 +81,12 @@ void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int acti
 	}
 }
 //#######################################################################################################################
+
+void get_project_list() {
+	std::ifstream project_list;
+	std::string project_list_item;
+
+	project_list.open("SCENE/project_list.txt");
+	while (project_list >> project_list_item) { PROJECT_LIST.push_back(project_list_item); }
+
+}

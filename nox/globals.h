@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "camera.h"
+#include <vector>
 #include <string>
 
 const int SCREEN_WIDTH = 1280;
@@ -36,3 +37,6 @@ extern void mouse_callback(GLFWwindow* window, double xPos, double yPos);
 //keyboard input callback function
 extern void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 //#######################################################################################################################
+
+extern std::vector<std::string> PROJECT_LIST;
+extern void get_project_list();

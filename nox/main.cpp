@@ -63,7 +63,6 @@ void main() {
 	//set projection for 3D MODEL
 	for (int i = 0; i < project.objects.size(); i++) {
 		project.objects[i].updateProjection();
-		//project.objects[i].updateModel();
 	}
 
 	//Activate IMGUI
@@ -117,13 +116,45 @@ void main() {
 		ImGui::Begin("Controls");
 		//ImGui::SliderFloat("ScalingBias", &SCALING_BIAS, 0, 10);
 		ImGui::End();
+		ImGui::Begin("Projects");
+		for (int i = 0; i < PROJECT_LIST.size(); i++) {
+			if (ImGui::Button(PROJECT_LIST[i].c_str())) {
+				PROJECT_NAME = "SCENE/"+PROJECT_LIST[i]+"/";
+				project = Project(PROJECT_NAME);
+
+				//Deserialize the data
+				{
+					std::ifstream dataFile;
+					dataFile.open(PROJECT_NAME + "data.xml");
+					if (dataFile) {//check if data.xml exists then deserialze
+						std::ifstream is(PROJECT_NAME + "data.xml");
+						cereal::XMLInputArchive archive(is);
+						archive(project);
+
+						for (int i = 0; i < project.objects.size(); i++) {
+							project.objects[i].arrayToMatrix();
+						}
+					}
+					dataFile.close();
+				}
+				//update Projection
+				for (int i = 0; i < project.objects.size(); i++) {
+					project.objects[i].updateProjection();
+				}
+				//update view
+				for (int i = 0; i < project.objects.size(); i++) {
+					project.objects[i].updateView();
+				}
+			}
+		}
+		ImGui::End();
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-	}
+	}//end of render loop
 
 	//convert the current matrix to array before serialization
 	for (int i = 0; i < project.objects.size(); i++) {
