@@ -38,7 +38,7 @@ void main() {
 
 	//#######################################################################################################################
 	//load the model here
-	Project project("SCENE/project0");
+	Project project("SCENE/project0/");
 
 	//Deserialize the data
 	{
