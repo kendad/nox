@@ -48,8 +48,9 @@ void Object::updateView() {
 }
 
 void Object::updateModel() {
-	arrayToMatrix();
 	matrixToArray();
+	//arrayToMatrix();
+	
 	shader.use();
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(positionX, positionY, positionZ));
 	modelMatrix = glm::scale(modelMatrix, glm::vec3(scaleX, scaleY, scaleZ));

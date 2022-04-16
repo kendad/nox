@@ -46,6 +46,10 @@ void main() {
 		std::ifstream is("data.xml");
 		cereal::XMLInputArchive archive(is);
 		archive(project);
+
+		for (int i = 0; i < project.objects.size(); i++) {
+			project.objects[i].arrayToMatrix();
+		}
 	}
 	
 	//projection matrix
@@ -63,7 +67,6 @@ void main() {
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-	//project.objects[0].positionX = 0.01f;
 	//update Project
 	for (int i = 0; i < project.objects.size(); i++) {
 		project.objects[i].updateProjection();
@@ -112,6 +115,7 @@ void main() {
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		//ourModel.Draw(ourShader);
+		//project.objects[0].positionX = -0.01;
 		for (int i = 0; i < project.objects.size(); i++) {
 			project.objects[i].updateModel();
 			project.objects[i].render();
@@ -127,6 +131,10 @@ void main() {
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+	}
+
+	for (int i = 0; i < project.objects.size(); i++) {
+		project.objects[i].arrayToMatrix();
 	}
 
 	{
