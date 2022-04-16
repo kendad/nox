@@ -18,6 +18,7 @@
 
 #include <fstream>
 #include <cereal/archives/xml.hpp>
+#include <cereal/types/array.hpp>
 
 //screen settings
 const int SCR_WIDTH = 800;
@@ -41,11 +42,11 @@ void main() {
 	Model ourModel;
 	Project project("SCENE/project0");
 
-	/*{
-		std::ofstream os("data.xml");
-		cereal::XMLOutputArchive archive(os);
-		archive(CEREAL_NVP(project));
-	}*/
+	{
+		std::ifstream is("data.xml");
+		cereal::XMLInputArchive archive(is);
+		archive(project);
+	}
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
@@ -62,7 +63,7 @@ void main() {
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-
+	//project.objects[0].positionX = 0.01f;
 	//update Project
 	for (int i = 0; i < project.objects.size(); i++) {
 		project.objects[i].updateProjection();
@@ -110,11 +111,8 @@ void main() {
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		project.objects[0].positionX = 0.001;
-		project.objects[0].updateModel();
 		//ourModel.Draw(ourShader);
 		for (int i = 0; i < project.objects.size(); i++) {
-			project.objects[0].positionX = 0.001;
 			project.objects[i].updateModel();
 			project.objects[i].render();
 		}

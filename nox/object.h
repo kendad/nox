@@ -2,6 +2,9 @@
 #include "model.h"
 #include "shader.h"
 
+#include <cereal/types/array.hpp>
+#include <cereal/types/memory.hpp>
+
 class Object {
 public:
 	Object();
@@ -14,11 +17,15 @@ public:
 	Shader shader;
 
 	glm::mat4 modelMatrix;//serialize this
+	float modelArray[16];
 
 	void updateProjection();
 	void updateView();
 	void updateModel();
 	void render();
+
+	void matrixToArray();
+	void arrayToMatrix();
 
 	float positionX;
 	float positionY;
@@ -29,10 +36,7 @@ public:
 	float scaleZ;
 
 	template<class Archive>
-	/*void serialize(Archive& ar, glm::mat4& m) {
-		ar(m[0],m[1],m[2],m[3]);
-	}*/
 	void serialize(Archive& ar) {
-		ar(positionX,positionY,positionZ,scaleX,scaleY,scaleZ);
+		ar(modelArray);
 	}
 };
