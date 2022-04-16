@@ -41,11 +41,11 @@ void main() {
 	Model ourModel;
 	Project project("SCENE/project0");
 
-	{
+	/*{
 		std::ofstream os("data.xml");
 		cereal::XMLOutputArchive archive(os);
 		archive(CEREAL_NVP(project));
-	}
+	}*/
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
@@ -96,7 +96,7 @@ void main() {
 		//set view for 3D MODEL
 		ourShader.use();
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		//update Project
+		//update Project view matrix
 		for (int i = 0; i < project.objects.size(); i++) {
 			project.objects[i].updateView();
 		}
@@ -110,8 +110,12 @@ void main() {
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		project.objects[0].positionX = 0.001;
+		project.objects[0].updateModel();
 		//ourModel.Draw(ourShader);
 		for (int i = 0; i < project.objects.size(); i++) {
+			project.objects[0].positionX = 0.001;
+			project.objects[i].updateModel();
 			project.objects[i].render();
 		}
 
@@ -125,6 +129,12 @@ void main() {
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+	}
+
+	{
+		std::ofstream os("data.xml");
+		cereal::XMLOutputArchive archive(os);
+		archive(CEREAL_NVP(project));
 	}
 
 	//End IMGUI here

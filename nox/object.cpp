@@ -10,9 +10,9 @@ Object::Object() {
 
 	modelMatrix = glm::mat4(1.0f);
 
-	positionX = 1.0f;
-	positionY = 1.0f;
-	positionZ = 1.0f;
+	positionX = 0.0f;
+	positionY = 0.0f;
+	positionZ = 0.0f;
 
 	scaleX = 1.0f;
 	scaleY = 1.0f;
@@ -28,9 +28,9 @@ Object::Object(std::string _model_path, std::string _shader_path) {
 
 	modelMatrix=glm::mat4(1.0f);
 
-	positionX = 1.0f;
-	positionY = 1.0f;
-	positionZ = 1.0f;
+	positionX = 0.0f;
+	positionY = 0.0f;
+	positionZ = 0.0f;
 
 	scaleX = 1.0f;
 	scaleY = 1.0f;
