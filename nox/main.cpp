@@ -42,13 +42,18 @@ void main() {
 
 	//Deserialize the data
 	{
-		std::ifstream is(PROJECT_NAME+"data.xml");
-		cereal::XMLInputArchive archive(is);
-		archive(project);
+		std::ifstream dataFile;
+		dataFile.open(PROJECT_NAME + "data.xml");
+		if (dataFile) {//check if data.xml exists then deserialze
+			std::ifstream is(PROJECT_NAME + "data.xml");
+			cereal::XMLInputArchive archive(is);
+			archive(project);
 
-		for (int i = 0; i < project.objects.size(); i++) {
-			project.objects[i].arrayToMatrix();
+			for (int i = 0; i < project.objects.size(); i++) {
+				project.objects[i].arrayToMatrix();
+			}
 		}
+		dataFile.close();
 	}
 	
 	//projection matrix
@@ -102,7 +107,7 @@ void main() {
 		//draw stuff here
 		
 		//update and render 3D MODEL
-		//project.objects[0].positionX = -0.01;
+		//project.objects[2].positionX = 0.01;
 		for (int i = 0; i < project.objects.size(); i++) {
 			project.objects[i].updateModel();
 			project.objects[i].render();
