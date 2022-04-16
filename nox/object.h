@@ -13,7 +13,7 @@ public:
 	Model model;
 	Shader shader;
 
-	glm::mat4 modelMatrix;
+	glm::mat4 modelMatrix;//serialize this
 
 	void updateProjection();
 	void updateView();

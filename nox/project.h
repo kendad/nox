@@ -4,7 +4,7 @@
 
 class Project {
 public:
-	Project();
-	std::vector<Object> objects;
+	Project(std::string base_path);
+	std::vector<Object> objects;//serialize this
 };
 

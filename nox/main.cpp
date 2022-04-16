@@ -36,7 +36,7 @@ void main() {
 	//load the model here
 	Shader ourShader("Shaders/base.vs", "Shaders/base.fs");
 	Model ourModel;
-	Project project;
+	Project project("SCENE/project0");
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
