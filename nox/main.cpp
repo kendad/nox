@@ -14,6 +14,7 @@
 #include "texture.h"
 #include "camera.h"
 #include "model.h"
+#include "project.h"
 
 //screen settings
 const int SCR_WIDTH = 800;
@@ -35,10 +36,12 @@ void main() {
 	//load the model here
 	Shader ourShader("Shaders/base.vs", "Shaders/base.fs");
 	Model ourModel;
+	Project project;
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
+	PROJECTION_MATRIX = projection;
 	//set projection for 3D MODEL
 	ourShader.use();
 	glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -50,6 +53,12 @@ void main() {
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
+
+	//update Project
+	for (int i = 0; i < project.objects.size(); i++) {
+		project.objects[i].updateProjection();
+		project.objects[i].updateModel();
+	}
 
 	//render Loop
 	glEnable(GL_DEPTH_TEST);//enable depth testing
@@ -74,9 +83,14 @@ void main() {
 
 		//Update view Matrix
 		glm::mat4 view = glm::lookAt(gCamera->position, gCamera->position + gCamera->front, gCamera->up);
+		VIEW_MATRIX = view;
 		//set view for 3D MODEL
 		ourShader.use();
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		//update Project
+		for (int i = 0; i < project.objects.size(); i++) {
+			project.objects[i].updateView();
+		}
 
 
 		//draw stuff here
@@ -87,7 +101,10 @@ void main() {
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		ourModel.Draw(ourShader);
+		//ourModel.Draw(ourShader);
+		for (int i = 0; i < project.objects.size(); i++) {
+			project.objects[i].render();
+		}
 
 		//render IMGUI stuff here
 		ImGui::Begin("Controls");

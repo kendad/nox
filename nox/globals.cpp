@@ -9,6 +9,9 @@ bool IS_MOUSE_CAPTURED = true;
 GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
 
+glm::mat4 PROJECTION_MATRIX;
+glm::mat4 VIEW_MATRIX;
+
 void INIT() {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

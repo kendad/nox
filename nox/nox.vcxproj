@@ -155,7 +155,8 @@
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="project.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
@@ -174,7 +175,8 @@
     <ClInclude Include="mesh.h" />
     <ClInclude Include="mesh_type.h" />
     <ClInclude Include="model.h" />
-    <ClInclude Include="scene.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="project.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texture.h" />

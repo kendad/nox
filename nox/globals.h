@@ -15,6 +15,9 @@ extern Camera* gCamera;
 
 extern bool IS_MOUSE_CAPTURED;
 
+extern glm::mat4 PROJECTION_MATRIX;
+extern glm::mat4 VIEW_MATRIX;
+
 //intialize GLFW for processing
 extern void INIT();
 
