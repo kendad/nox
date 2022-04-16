@@ -16,6 +16,9 @@
 #include "model.h"
 #include "project.h"
 
+#include <fstream>
+#include <cereal/archives/xml.hpp>
+
 //screen settings
 const int SCR_WIDTH = 800;
 const int SCR_HEIGHT = 600;
@@ -37,6 +40,12 @@ void main() {
 	Shader ourShader("Shaders/base.vs", "Shaders/base.fs");
 	Model ourModel;
 	Project project("SCENE/project0");
+
+	{
+		std::ofstream os("data.xml");
+		cereal::XMLOutputArchive archive(os);
+		archive(CEREAL_NVP(project));
+	}
 	
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);

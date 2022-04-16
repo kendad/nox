@@ -24,7 +24,7 @@ Object::Object(std::string _model_path, std::string _shader_path) {
 	shader_path = _shader_path;
 
 	model = Model(model_path);
-	shader = Shader((shader_path+"shader.vs").c_str(), (shader_path + "shader.fs").c_str());
+	shader = Shader((shader_path+"base.vs").c_str(), (shader_path + "base.fs").c_str());
 
 	modelMatrix=glm::mat4(1.0f);
 
