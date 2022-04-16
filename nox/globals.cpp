@@ -12,6 +12,8 @@ Camera* gCamera = nullptr;
 glm::mat4 PROJECTION_MATRIX;
 glm::mat4 VIEW_MATRIX;
 
+std::string PROJECT_NAME="SCENE/project0/";
+
 void INIT() {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

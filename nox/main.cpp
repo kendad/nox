@@ -38,11 +38,11 @@ void main() {
 
 	//#######################################################################################################################
 	//load the model here
-	Project project("SCENE/project0/");
+	Project project(PROJECT_NAME);
 
 	//Deserialize the data
 	{
-		std::ifstream is("SCENE/project0/data.xml");
+		std::ifstream is(PROJECT_NAME+"data.xml");
 		cereal::XMLInputArchive archive(is);
 		archive(project);
 
@@ -127,7 +127,7 @@ void main() {
 
 	//seriliaze the data before closing
 	{
-		std::ofstream os("SCENE/project0/data.xml");
+		std::ofstream os(PROJECT_NAME + "data.xml");
 		cereal::XMLOutputArchive archive(os);
 		archive(CEREAL_NVP(project));
 	}

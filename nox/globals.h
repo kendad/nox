@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "camera.h"
-
+#include <string>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -17,6 +17,8 @@ extern bool IS_MOUSE_CAPTURED;
 
 extern glm::mat4 PROJECTION_MATRIX;
 extern glm::mat4 VIEW_MATRIX;
+
+extern std::string PROJECT_NAME;
 
 //intialize GLFW for processing
 extern void INIT();
