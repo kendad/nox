@@ -16,7 +16,7 @@ public:
 	Model model;
 	Shader shader;
 
-	glm::mat4 modelMatrix;//serialize this
+	glm::mat4 modelMatrix;
 	float modelArray[16];
 
 	void updateProjection();

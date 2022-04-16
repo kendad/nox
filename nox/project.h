@@ -6,7 +6,8 @@
 class Project {
 public:
 	Project(std::string base_path);
-	std::vector<Object> objects;//serialize this
+	std::vector<Object> objects;
+
 
 	template<class Archive>
 	void serialize(Archive& ar) {
