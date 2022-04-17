@@ -114,7 +114,12 @@ void main() {
 
 		//render IMGUI stuff here
 		ImGui::Begin("Controls");
-		//ImGui::SliderFloat("ScalingBias", &SCALING_BIAS, 0, 10);
+		ImGui::Text("Objects");
+		for (int i = 0; i < OBJECT_LIST.size(); i++) {
+			if (ImGui::Button(OBJECT_LIST[i].c_str())) {
+				CURRENT_ACTIVE_OBJECT = i;
+			}
+		}
 		ImGui::End();
 		ImGui::Begin("Projects");
 		for (int i = 0; i < PROJECT_LIST.size(); i++) {
@@ -145,6 +150,8 @@ void main() {
 				for (int i = 0; i < project.objects.size(); i++) {
 					project.objects[i].updateView();
 				}
+				//update the objects list
+				get_objects_list();
 			}
 		}
 		ImGui::End();
