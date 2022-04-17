@@ -22,6 +22,7 @@ public:
 	void updateProjection();
 	void updateView();
 	void updateModel();
+	void updateUniforms();
 	void render();
 
 	void matrixToArray();

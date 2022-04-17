@@ -17,8 +17,8 @@
 					<value10>1</value10>
 					<value11>0</value11>
 					<value12>-1</value12>
-					<value13>1</value13>
-					<value14>1</value14>
+					<value13>0</value13>
+					<value14>-0.37900000810623169</value14>
 					<value15>1</value15>
 				</value0>
 			</value0>
@@ -37,7 +37,7 @@
 					<value10>1</value10>
 					<value11>0</value11>
 					<value12>0.099998712539672852</value12>
-					<value13>0</value13>
+					<value13>-1</value13>
 					<value14>0</value14>
 					<value15>1</value15>
 				</value0>
@@ -58,7 +58,7 @@
 					<value11>0</value11>
 					<value12>1.7619999647140503</value12>
 					<value13>1</value13>
-					<value14>0</value14>
+					<value14>-1</value14>
 					<value15>1</value15>
 				</value0>
 			</value2>

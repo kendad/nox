@@ -37,6 +37,10 @@ Object::Object(std::string _model_path, std::string _shader_path) {
 	scaleZ = 1.0f;
 }
 
+void Object::updateUniforms() {
+	shader.use();
+}
+
 void Object::updateProjection() {
 	shader.use();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(PROJECTION_MATRIX));
@@ -49,7 +53,6 @@ void Object::updateView() {
 
 void Object::updateModel() {
 	matrixToArray();
-	//arrayToMatrix();
 	
 	shader.use();
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(positionX, positionY, positionZ));

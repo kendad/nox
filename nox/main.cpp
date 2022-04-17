@@ -39,7 +39,6 @@ void main() {
 	//#######################################################################################################################
 	//load the model here
 	Project project(PROJECT_NAME);
-
 	//Deserialize the data
 	{
 		std::ifstream dataFile;
