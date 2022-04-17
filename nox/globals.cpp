@@ -14,8 +14,10 @@ glm::mat4 PROJECTION_MATRIX;
 glm::mat4 VIEW_MATRIX;
 
 std::string PROJECT_NAME="SCENE/project0/";
-
 std::vector<std::string> PROJECT_LIST;
+
+int CURRENT_ACTIVE_OBJECT=0;
+std::vector<std::string>  OBJECT_LIST;
 
 void INIT() {
 	glfwInit();
@@ -47,8 +49,11 @@ void INIT() {
 		return;
 	}
 
-	//get project files
+	//get project file names
 	get_project_list();
+
+	//get objects name
+	get_objects_list();
 }
 
 //#######################################################################################################################
@@ -88,5 +93,17 @@ void get_project_list() {
 
 	project_list.open("SCENE/project_list.txt");
 	while (project_list >> project_list_item) { PROJECT_LIST.push_back(project_list_item); }
+	project_list.close();
 
+}
+
+void get_objects_list() {
+	if (OBJECT_LIST.size() > 0) { OBJECT_LIST.clear(); }
+
+	std::ifstream object_list;
+	std::string object_name;
+
+	object_list.open(PROJECT_NAME + "object_data.txt");
+	while (object_list >> object_name) { OBJECT_LIST.push_back(object_name); }
+	object_list.close();
 }

@@ -19,7 +19,11 @@ extern bool IS_MOUSE_CAPTURED;
 extern glm::mat4 PROJECTION_MATRIX;
 extern glm::mat4 VIEW_MATRIX;
 
+extern std::vector<std::string> PROJECT_LIST;
 extern std::string PROJECT_NAME;
+
+extern std::vector<std::string>  OBJECT_LIST;
+extern int CURRENT_ACTIVE_OBJECT;
 
 //intialize GLFW for processing
 extern void INIT();
@@ -40,3 +44,5 @@ extern void keyboard_input_callback(GLFWwindow* window, int key, int scancode, i
 
 extern std::vector<std::string> PROJECT_LIST;
 extern void get_project_list();
+
+extern void get_objects_list();
