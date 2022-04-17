@@ -120,10 +120,30 @@ void main() {
 				CURRENT_ACTIVE_OBJECT = i;
 			}
 		}
+		ImGui::Text(("Controls:- "+OBJECT_LIST[CURRENT_ACTIVE_OBJECT]).c_str());
+		ImGui::DragFloat("PositionX", &project.objects[CURRENT_ACTIVE_OBJECT].positionX, 0.001f, -1, 1);
+		ImGui::DragFloat("PositionY", &project.objects[CURRENT_ACTIVE_OBJECT].positionY, 0.001f, -1, 1);
+		ImGui::DragFloat("PositionZ", &project.objects[CURRENT_ACTIVE_OBJECT].positionZ, 0.001f, -1, 1);
+		ImGui::DragFloat("ScaleX", &project.objects[CURRENT_ACTIVE_OBJECT].scaleX, 0.001f, -1, 1);
+		ImGui::DragFloat("ScaleY", &project.objects[CURRENT_ACTIVE_OBJECT].scaleY, 0.001f, -1, 1);
+		ImGui::DragFloat("ScaleZ", &project.objects[CURRENT_ACTIVE_OBJECT].scaleZ, 0.001f, -1, 1);
 		ImGui::End();
+
 		ImGui::Begin("Projects");
 		for (int i = 0; i < PROJECT_LIST.size(); i++) {
 			if (ImGui::Button(PROJECT_LIST[i].c_str())) {
+				//convert the current matrix to array before serialization
+				for (int i = 0; i < project.objects.size(); i++) {
+					project.objects[i].arrayToMatrix();
+				}
+
+				//seriliaze the data before closing
+				{
+					std::ofstream os(PROJECT_NAME + "data.xml");
+					cereal::XMLOutputArchive archive(os);
+					archive(CEREAL_NVP(project));
+				}
+
 				PROJECT_NAME = "SCENE/"+PROJECT_LIST[i]+"/";
 				project = Project(PROJECT_NAME);
 
