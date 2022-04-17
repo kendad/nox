@@ -121,12 +121,10 @@ void main() {
 			}
 		}
 		ImGui::Text(("Controls:- "+OBJECT_LIST[CURRENT_ACTIVE_OBJECT]).c_str());
-		ImGui::DragFloat("PositionX", &project.objects[CURRENT_ACTIVE_OBJECT].positionX, 0.001f, -1, 1);
-		ImGui::DragFloat("PositionY", &project.objects[CURRENT_ACTIVE_OBJECT].positionY, 0.001f, -1, 1);
-		ImGui::DragFloat("PositionZ", &project.objects[CURRENT_ACTIVE_OBJECT].positionZ, 0.001f, -1, 1);
-		ImGui::DragFloat("ScaleX", &project.objects[CURRENT_ACTIVE_OBJECT].scaleX, 0.001f, -1, 1);
-		ImGui::DragFloat("ScaleY", &project.objects[CURRENT_ACTIVE_OBJECT].scaleY, 0.001f, -1, 1);
-		ImGui::DragFloat("ScaleZ", &project.objects[CURRENT_ACTIVE_OBJECT].scaleZ, 0.001f, -1, 1);
+		ImGui::DragFloat("PositionX", &project.objects[CURRENT_ACTIVE_OBJECT].positionX, 0.001f, -0.1, 0.1);
+		ImGui::DragFloat("PositionY", &project.objects[CURRENT_ACTIVE_OBJECT].positionY, 0.001f, -0.1, 0.1);
+		ImGui::DragFloat("PositionZ", &project.objects[CURRENT_ACTIVE_OBJECT].positionZ, 0.001f, -0.1, 0.1);
+		ImGui::DragFloat("Scale", &project.objects[CURRENT_ACTIVE_OBJECT].scaleX, 0.001f, 0, 1.1);
 		ImGui::End();
 
 		ImGui::Begin("Projects");

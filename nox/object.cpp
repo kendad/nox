@@ -53,7 +53,7 @@ void Object::updateModel() {
 	
 	shader.use();
 	modelMatrix = glm::translate(modelMatrix, glm::vec3(positionX, positionY, positionZ));
-	modelMatrix = glm::scale(modelMatrix, glm::vec3(scaleX, scaleY, scaleZ));
+	modelMatrix = glm::scale(modelMatrix, glm::vec3(scaleX, scaleX, scaleX));
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 }
 
