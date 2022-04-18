@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "texture.h"
+
 #include <iostream>
 #include <string>
 #include "globals.h"
@@ -58,6 +60,17 @@ int lua_setCameraToShader(lua_State* L) {
 	return 1;
 }
 
+int lua_setTexture(lua_State* L) {
+	std::string textureLocation = lua_tostring(L, 1);
+	bool flip = lua_toboolean(L, 2);
+	bool hasAlpha = lua_toboolean(L, 3);
+	std::string textureName = lua_tostring(L, 4);
+	int textureID = lua_tonumber(L, 5);
+	Texture texture(textureLocation, flip, hasAlpha);
+	texture.activate(CURRENT_ACTIVE_OBJECT_SHADER_ID, textureName, textureID);
+	return 1;
+}
+
 void LuaSupport(std::string lua_script_location) {
 	lua_State* L = luaL_newstate();//creating a Virtual Lua Machine
 	luaL_openlibs(L);//opens basic lua libs
@@ -65,8 +78,20 @@ void LuaSupport(std::string lua_script_location) {
 	lua_register(L, "setUniform1f", lua_glUniform1f);
 	lua_register(L, "setUniform3f", lua_glUniform3f);
 	lua_register(L, "setCameraToShader", lua_setCameraToShader);
+	lua_register(L, "setTexture", lua_setTexture);
 
 	luaL_dofile(L, lua_script_location.c_str());
+
+	//close LUA
+	lua_close(L);
+}
+
+void LuaSupportTexture(std::string lua_texture_script_location) {
+	lua_State* L = luaL_newstate();//creating a Virtual Lua Machine
+	luaL_openlibs(L);//opens basic lua libs
+	lua_register(L, "setTexture", lua_setTexture);
+
+	luaL_dofile(L, lua_texture_script_location.c_str());
 
 	//close LUA
 	lua_close(L);

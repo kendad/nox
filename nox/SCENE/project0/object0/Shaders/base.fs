@@ -8,6 +8,8 @@ uniform sampler2D texture_specular1;
 uniform sampler2D texture_normal1;
 uniform sampler2D texture_height1;
 
+uniform sampler2D water_texture;
+
 uniform vec3 color;
 
 void main()

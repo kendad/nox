@@ -23,6 +23,7 @@ public:
 	void updateView();
 	void updateModel();
 	void updateUniforms();
+	void updateTextures();
 	void render();
 
 	void matrixToArray();

@@ -43,6 +43,11 @@ void Object::updateUniforms() {
 	LuaSupport(shader_path+"uniform.lua");
 }
 
+void Object::updateTextures() {
+	shader.use();
+	LuaSupportTexture(PROJECT_NAME+"texture.lua");
+}
+
 void Object::updateProjection() {
 	shader.use();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(PROJECTION_MATRIX));

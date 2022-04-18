@@ -3,4 +3,4 @@ r=math.random(0,1)
 g=1.0
 b=1.0
 
-setUniform3f("color",0.5,g,b)
+setUniform3f("color",0,g,b)
