@@ -140,6 +140,7 @@ void main() {
 		for (int i = 0; i < PROJECT_LIST.size(); i++) {
 			if (ImGui::Button(PROJECT_LIST[i].c_str())) {
 				CURRENT_ACTIVE_PROJECT = i;
+				CURRENT_ACTIVE_OBJECT = 0;
 				//convert the current matrix to array before serialization
 				for (int i = 0; i < project.objects.size(); i++) {
 					project.objects[i].arrayToMatrix();
