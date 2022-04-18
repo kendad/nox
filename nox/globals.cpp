@@ -28,7 +28,7 @@ void INIT() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	//create window context
-	GLFWwindow* _window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Learning", NULL, NULL);
+	GLFWwindow* _window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "[Nox]", NULL, NULL);
 	if (_window == NULL) {
 		std::cout << "failed to create window" << std::endl;
 		glfwTerminate();
