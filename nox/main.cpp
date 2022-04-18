@@ -123,6 +123,7 @@ void main() {
 				CURRENT_ACTIVE_OBJECT = i;
 			}
 		}
+		ImGui::Checkbox("Wireframe Mode:- ", &project.objects[CURRENT_ACTIVE_OBJECT].wireFrameMode);
 		ImGui::Text(("Controls:- "+OBJECT_LIST[CURRENT_ACTIVE_OBJECT]).c_str());
 		ImGui::DragFloat("PositionX", &project.objects[CURRENT_ACTIVE_OBJECT].modelArray[12], 0.001f, -20, 20);
 		ImGui::DragFloat("PositionY", &project.objects[CURRENT_ACTIVE_OBJECT].modelArray[13], 0.001f, -20, 20);

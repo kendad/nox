@@ -18,6 +18,8 @@ Object::Object() {
 	scaleX = 1.0f;
 	scaleY = 1.0f;
 	scaleZ = 1.0f;
+
+	wireFrameMode = false;
 }
 
 Object::Object(std::string _model_path, std::string _shader_path) {
@@ -36,6 +38,8 @@ Object::Object(std::string _model_path, std::string _shader_path) {
 	scaleX = 1.0f;
 	scaleY = 1.0f;
 	scaleZ = 1.0f;
+
+	wireFrameMode = false;
 }
 
 void Object::updateUniforms() {
@@ -68,6 +72,7 @@ void Object::updateModel() {
 }
 
 void Object::render() {
+	if (wireFrameMode) { glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); }else{ glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); }
 	model.Draw(shader);
 }
 

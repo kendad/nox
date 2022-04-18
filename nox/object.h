@@ -37,6 +37,8 @@ public:
 	float scaleY;
 	float scaleZ;
 
+	bool wireFrameMode;
+
 	template<class Archive>
 	void serialize(Archive& ar) {
 		ar(modelArray);
