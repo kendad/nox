@@ -19,6 +19,7 @@ extern bool IS_MOUSE_CAPTURED;
 extern glm::mat4 PROJECTION_MATRIX;
 extern glm::mat4 VIEW_MATRIX;
 
+extern int CURRENT_ACTIVE_PROJECT;
 extern std::vector<std::string> PROJECT_LIST;
 extern std::string PROJECT_NAME;
 

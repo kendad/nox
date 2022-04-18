@@ -133,8 +133,10 @@ void main() {
 		ImGui::End();
 
 		ImGui::Begin("Projects");
+		ImGui::Text(("CurrentProject:- " + PROJECT_LIST[CURRENT_ACTIVE_PROJECT]).c_str());
 		for (int i = 0; i < PROJECT_LIST.size(); i++) {
 			if (ImGui::Button(PROJECT_LIST[i].c_str())) {
+				CURRENT_ACTIVE_PROJECT = i;
 				//convert the current matrix to array before serialization
 				for (int i = 0; i < project.objects.size(); i++) {
 					project.objects[i].arrayToMatrix();
