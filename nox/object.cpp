@@ -40,7 +40,7 @@ Object::Object(std::string _model_path, std::string _shader_path) {
 
 void Object::updateUniforms() {
 	shader.use();
-	LuaSupport();
+	LuaSupport(shader_path+"uniform.lua");
 }
 
 void Object::updateProjection() {

@@ -39,6 +39,7 @@ void main() {
 	//#######################################################################################################################
 	//load the model here
 	Project project(PROJECT_NAME);
+	CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[CURRENT_ACTIVE_OBJECT].shader.ID;
 	//Deserialize the data
 	{
 		std::ifstream dataFile;
@@ -107,7 +108,9 @@ void main() {
 		//update and render 3D MODEL
 		//project.objects[2].positionX = 0.01;
 		for (int i = 0; i < project.objects.size(); i++) {
+			CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[i].shader.ID;
 			project.objects[i].updateModel();
+			project.objects[i].updateUniforms();
 			project.objects[i].render();
 		}
 

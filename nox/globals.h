@@ -25,6 +25,8 @@ extern std::string PROJECT_NAME;
 extern std::vector<std::string>  OBJECT_LIST;
 extern int CURRENT_ACTIVE_OBJECT;
 
+extern int CURRENT_ACTIVE_OBJECT_SHADER_ID;
+
 //intialize GLFW for processing
 extern void INIT();
 

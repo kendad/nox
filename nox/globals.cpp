@@ -17,6 +17,7 @@ std::string PROJECT_NAME="SCENE/project0/";
 std::vector<std::string> PROJECT_LIST;
 
 int CURRENT_ACTIVE_OBJECT=0;
+int CURRENT_ACTIVE_OBJECT_SHADER_ID = 0;
 std::vector<std::string>  OBJECT_LIST;
 
 void INIT() {

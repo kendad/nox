@@ -1,7 +1,12 @@
 #pragma once
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <iostream>
 #include <string>
+#include "globals.h"
 
 extern "C" {
 #include <lua/lua.h>
@@ -20,6 +25,7 @@ bool CheckLua(lua_State* L, int r) {
 	return true;
 }
 
+//GLM SUpport for LUA
 int lua_HostSum(lua_State* L) {
 	float a = lua_tonumber(L, 1);
 	float b = lua_tonumber(L, 2);
@@ -30,31 +36,37 @@ int lua_HostSum(lua_State* L) {
 	return 1;
 }
 
-void LuaSupport() {
+int lua_glUniform1f(lua_State* L) {
+	float value = lua_tonumber(L, 2);
+	std::string uniformName = lua_tostring(L, 1);
+	glUniform1f(glGetUniformLocation(CURRENT_ACTIVE_OBJECT_SHADER_ID, uniformName.c_str()),value);
+	return 1;
+}
+
+int lua_glUniform3f(lua_State* L) {
+	float value1 = lua_tonumber(L, 2);
+	float value2 = lua_tonumber(L, 3);
+	float value3 = lua_tonumber(L, 4);
+	std::string uniformName = lua_tostring(L, 1);
+	glUniform3f(glGetUniformLocation(CURRENT_ACTIVE_OBJECT_SHADER_ID, uniformName.c_str()), value1,value2,value3);
+	return 1;
+}
+
+int lua_setCameraToShader(lua_State* L) {
+	std::string uniformName = lua_tostring(L, 1);
+	glUniform3fv(glGetUniformLocation(CURRENT_ACTIVE_OBJECT_SHADER_ID, uniformName.c_str()), 1,glm::value_ptr(gCamera->position));
+	return 1;
+}
+
+void LuaSupport(std::string lua_script_location) {
 	lua_State* L = luaL_newstate();//creating a Virtual Lua Machine
 	luaL_openlibs(L);//opens basic lua libs
 	lua_register(L, "HostSum", lua_HostSum);
+	lua_register(L, "setUniform1f", lua_glUniform1f);
+	lua_register(L, "setUniform3f", lua_glUniform3f);
+	lua_register(L, "setCameraToShader", lua_setCameraToShader);
 
-
-
-	if (CheckLua(L, luaL_dofile(L, "luaScript.lua"))) {
-		lua_getglobal(L, "MathStuff");
-		if (lua_isfunction(L, -1)) {
-			lua_pushnumber(L, 3.13f);
-			lua_pushnumber(L, 11.63f);
-
-			if (CheckLua(L, lua_pcall(L, 2, 1, 0))) {
-				std::cout << "[CPP] MathStuff: " << (float)lua_tonumber(L, -1) << std::endl;
-			}
-		}
-
-		lua_getglobal(L, "changeTime");
-		if (lua_isfunction(L, -1)) {
-			lua_pushnumber(L, 393939);
-			lua_pcall(L, 1, 0, 0);
-		}
-	}
-	std::cout << "######" << std::endl;
+	luaL_dofile(L, lua_script_location.c_str());
 
 	//close LUA
 	lua_close(L);
