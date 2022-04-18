@@ -79,7 +79,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Dependencies\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\library\glfw;$(SolutionDir)Dependencies\library\assimp;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\library\glfw;$(SolutionDir)Dependencies\library\assimp;$(SolutionDir)Dependencies\library\lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -172,6 +172,7 @@
     <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_truetype.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="lua_support.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="mesh_type.h" />
     <ClInclude Include="model.h" />

@@ -4,20 +4,20 @@
 		<value0 size="dynamic">
 			<value0>
 				<value0>
-					<value0>1</value0>
+					<value0>0.5</value0>
 					<value1>0</value1>
 					<value2>0</value2>
 					<value3>0</value3>
 					<value4>0</value4>
-					<value5>1</value5>
+					<value5>0.5</value5>
 					<value6>0</value6>
 					<value7>0</value7>
 					<value8>0</value8>
 					<value9>0</value9>
-					<value10>1</value10>
+					<value10>0.5</value10>
 					<value11>0</value11>
 					<value12>-1</value12>
-					<value13>0</value13>
+					<value13>1</value13>
 					<value14>-0.37900000810623169</value14>
 					<value15>1</value15>
 				</value0>
@@ -37,7 +37,7 @@
 					<value10>1</value10>
 					<value11>0</value11>
 					<value12>0.099998712539672852</value12>
-					<value13>-1</value13>
+					<value13>-0.16899999976158142</value13>
 					<value14>0</value14>
 					<value15>1</value15>
 				</value0>

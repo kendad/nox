@@ -128,5 +128,8 @@
     <ClInclude Include="object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lua_support.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
