@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "camera.h"
+#include "texture.h"
 #include <vector>
 #include <string>
 

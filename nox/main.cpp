@@ -39,8 +39,11 @@ void main() {
 	//#######################################################################################################################
 	//load the model here
 	Project project(PROJECT_NAME);
-	CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[CURRENT_ACTIVE_OBJECT].shader.ID;
-	project.objects[CURRENT_ACTIVE_OBJECT].updateTextures();
+	for (int i = 0; i < project.objects.size(); i++) {
+		CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[i].shader.ID;
+		project.objects[i].updateTextures();
+	}
+
 	//Deserialize the data
 	{
 		std::ifstream dataFile;
@@ -132,7 +135,12 @@ void main() {
 		ImGui::DragFloat("ScaleY", &project.objects[CURRENT_ACTIVE_OBJECT].modelArray[5], 0.001f, 0, 10);
 		ImGui::DragFloat("ScaleZ", &project.objects[CURRENT_ACTIVE_OBJECT].modelArray[10], 0.001f, 0, 10);
 		project.objects[CURRENT_ACTIVE_OBJECT].arrayToMatrix();
-		if(ImGui::Button("updateTextures")){ project.objects[CURRENT_ACTIVE_OBJECT].updateTextures(); }
+		if(ImGui::Button("updateTextures")){
+			for (int i = 0; i < project.objects.size(); i++) {
+				CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[i].shader.ID;
+				project.objects[i].updateTextures();
+			}
+		}
 		ImGui::End();
 
 		ImGui::Begin("Projects");
@@ -155,7 +163,10 @@ void main() {
 
 				PROJECT_NAME = "SCENE/"+PROJECT_LIST[i]+"/";
 				project = Project(PROJECT_NAME);
-				project.objects[CURRENT_ACTIVE_OBJECT].updateTextures();
+				for (int i = 0; i < project.objects.size(); i++) {
+					CURRENT_ACTIVE_OBJECT_SHADER_ID = project.objects[i].shader.ID;
+					project.objects[i].updateTextures();
+				}
 
 				//Deserialize the data
 				{

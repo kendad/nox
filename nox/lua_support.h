@@ -78,7 +78,6 @@ void LuaSupport(std::string lua_script_location) {
 	lua_register(L, "setUniform1f", lua_glUniform1f);
 	lua_register(L, "setUniform3f", lua_glUniform3f);
 	lua_register(L, "setCameraToShader", lua_setCameraToShader);
-	lua_register(L, "setTexture", lua_setTexture);
 
 	luaL_dofile(L, lua_script_location.c_str());
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "model.h"
 #include "shader.h"
+#include "texture.h"
+#include <vector>
 
 #include <cereal/types/array.hpp>
 #include <cereal/types/memory.hpp>

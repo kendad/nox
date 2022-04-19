@@ -1,0 +1,5 @@
+setTexture("SCENE/watersimulation/Textures/water.jpg",false,false,"texture_color",0)
+setTexture("SCENE/watersimulation/Textures/water_color.jpg",false,false,"texture_diffuse",1)
+setTexture("SCENE/watersimulation/Textures/water_specular.jpg",false,false,"texture_specular",2)
+setTexture("SCENE/watersimulation/Textures/water_normal.jpg",false,false,"texture_normal",3)
+setTexture("SCENE/watersimulation/Textures/water_ambience.jpg",false,false,"texture_ambience",4)
